@@ -31,7 +31,7 @@ class args:
     save_imputed = True
 #%%
 parser = argparse.ArgumentParser(description='AutoComplete')
-parser.add_argument('data_file', type=str, help='CSV file where rows are samples and columns correspond to features.')
+parser.add_argument('--data_file', type=str, help='CSV file where rows are samples and columns correspond to features.')
 parser.add_argument('--id_name', type=str, default='ID', help='Column in CSV file which is the identifier for the samples.')
 parser.add_argument('--output', type=str, help='The imputed version of the data will be saved as this file. ' +\
     'If not specified the imputed data will be saved as `imputed_{data_file}` in the same folder as the `data_file`.')

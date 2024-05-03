@@ -1,3 +1,10 @@
+# don't commit the files in the datasets folder
+datasets/*
+
+# exception to the rule
+!datasets/.gitkeep 
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

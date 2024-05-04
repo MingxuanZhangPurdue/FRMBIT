@@ -8,7 +8,7 @@ from AutoComplete.dataset import CopymaskDataset
 
 
 parser = argparse.ArgumentParser(description='Inference trained AutoComplete model')
-parser.add_argument('--impute_using_save', type=str, help='Path to saved model')
+parser.add_argument('--impute_using_saved', type=str, help='Path to saved model')
 parser.add_argument('--id_name', type=str, default='ID', help='Column in CSV file which is the identifier for the samples.')
 parser.add_argument('--device', type=str, default='cpu', help='Device available for torch (use cpu if no GPU available).')
 

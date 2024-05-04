@@ -67,10 +67,10 @@ For example, if we want to generate hidden representations for both the train an
 
 ```console
 python AutoComplete/inference.py \
-    --impute_using_saved checkpoints/seed42_lr1.0_bs512_cm0.5_er0.5_depth1_epochs100
+    --impute_using_saved checkpoints/seed42_lr1.0_bs512_cm0.5_er0.5_depth1_epochs100 \
     --id_name ID \
     --device cuda
 ```
 
 
-This will generate a new CSV file named by **encoding_ratio=0.5.CSV** inside the results folder, that contains the hidden representations and IDs for all objects from the train and test sets.
+This will generate a new CSV file named as **encoding_ratio=0.5.csv** inside the results folder, which contains the hidden representations and IDs for all objects from the train and test sets.

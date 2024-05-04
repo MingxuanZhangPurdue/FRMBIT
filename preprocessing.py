@@ -27,5 +27,7 @@ merged_df = merged_df.rename(columns={'IID': 'ID'})
 train = merged_df[merged_df['ID'].isin(train_ids)]
 test  = merged_df[merged_df['ID'].isin(test_ids)]
 
+print ("Train shape: ", train.shape)
+print ("Test shape: ", test.shape)
 train.to_csv("datasets/train.csv", index=False)
 test.to_csv("datasets/test.csv", index=False)

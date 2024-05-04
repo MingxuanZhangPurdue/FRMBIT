@@ -20,12 +20,11 @@ train_tab = pd.read_csv("datasets/train.csv").set_index(id_name)
 test_tab = pd.read_csv("datasets/test.csv").set_index(id_name)
 feature_dim = train_tab.shape[-1]
 
-pattern = r"[-+]?\d*\.\d+|\d+"
-nums_str = re.findall(pattern, args.impute_using_saved)
+nums_str = re.findall(r'\d+\.\d+|\d+', args.impute_using_saved)
 hyperparams = [float(num_str) for num_str in nums_str]
-batch_size = int(hyperparams[1])
-encoding_ratio = hyperparams[3]
-depth = int(hyperparams[4])
+batch_size = int(hyperparams[2])
+encoding_ratio = hyperparams[4]
+depth = int(hyperparams[5])
 
 
 model = torch.load(args.impute_using_saved, map_location=torch.device(device))

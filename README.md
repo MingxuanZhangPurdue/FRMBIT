@@ -1,6 +1,6 @@
 # Learning a foundational representation of UK Biobank brain imaging traits
 
-All the commnadlines provided below should be executed from the folder that contains this README.md file
+All the commnad lines provided below should be executed from the folder that contains this README.md file.
 
 ## Set up enviroment
 
@@ -27,5 +27,11 @@ Then run,
 python preprocessing.py
 ```
 
-This will generate two additional CSV files: train.csv and test.csv inside the datasets folder
+This will generate two additional CSV files: train.csv and test.csv inside the datasets folder.
 
+# Train AutoComplete models
+
+
+```console
+
+```

@@ -31,7 +31,30 @@ This will generate two additional CSV files: train.csv and test.csv inside the d
 
 # Train AutoComplete models
 
+Below is an example training script, where we set learning rate: lr=0.1, batchsize: bs=512, copymask amount: cm=0.5, encoding ratio: er=0.5, model depth: depth=1, number of training epochs: epochs=100, and random seed: seed=42.
+
+The trained model will be saved under the checkpoints folder.
 
 ```console
+lr=1.0
+bs=512
+cm=0.5
+er=0.5
+depth=1
+epochs=100
+seed=42
 
+python AutoComplete/fit.py \
+    --data_file datasets/train.csv \--id_name ID \
+    --copymask_amount ${cm} \
+    --batch_size ${bs} \
+    --epochs ${epochs} \
+    --val_split 0.95 \
+    --lr ${lr} \
+    --device cuda \
+    --encoding_ratio ${er} \
+    --depth ${depth} \
+    --seed ${seed} \
+    --output checkpoints/seed${seed}_lr${lr}_bs${bs}_cm${cm}_er${er}_depth${depth}_epochs${epochs} \
+    --save_model_path checkpoints/seed${seed}_lr${lr}_bs${bs}_cm${cm}_er${er}_depth${depth}_epochs${epochs}
 ```

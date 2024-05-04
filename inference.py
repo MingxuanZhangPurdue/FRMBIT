@@ -4,6 +4,7 @@ import argparse
 import pandas as pd
 import numpy as np
 from torch.utils.data import DataLoader
+from AutoComplete import ac
 from AutoComplete.dataset import CopymaskDataset
 
 

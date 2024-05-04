@@ -33,7 +33,7 @@ This will generate two additional CSV files: train.csv and test.csv inside the d
 
 Below is an example training script, where we set learning rate: lr=0.1, batchsize: bs=512, copymask amount: cm=0.5, encoding ratio: er=0.5, model depth: depth=1, number of training epochs: epochs=100, and random seed: seed=42.
 
-The trained model will be saved under the checkpoints folder.
+The trained model will be saved under the checkpoints folder, and the name for the saved model is specified by the **--save_model_path** argument.
 
 ```console
 lr=1.0

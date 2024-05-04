@@ -74,3 +74,6 @@ python AutoComplete/inference.py \
 
 
 This will generate a new CSV file named as **encoding_ratio=0.5.csv** inside the results folder, which contains the hidden representations and IDs for all objects from the train and test sets.
+
+
+## Train Elastic nets using generated hidden representatons

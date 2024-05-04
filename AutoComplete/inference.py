@@ -4,7 +4,7 @@ import argparse
 import pandas as pd
 import numpy as np
 from torch.utils.data import DataLoader
-from dataset import CopymaskDataset
+from AutoComplete.dataset import CopymaskDataset
 
 
 parser = argparse.ArgumentParser(description='Inference trained AutoComplete model')
@@ -16,8 +16,8 @@ args = parser.parse_args()
 
 device = args.device
 id_name = args.id_name
-train_tab = pd.read_csv("../datasets/train.csv").set_index(id_name)
-test_tab = pd.read_csv("../datasets/test.csv").set_index(id_name)
+train_tab = pd.read_csv("datasets/train.csv").set_index(id_name)
+test_tab = pd.read_csv("datasets/test.csv").set_index(id_name)
 feature_dim = train_tab.shape[-1]
 
 pattern = r"[-+]?\d*\.\d+|\d+"
@@ -66,4 +66,4 @@ for bi, batch in enumerate(dset):
 hmat = np.concatenate(hidden_ls)
 df_hidden = pd.DataFrame(data=hmat)
 df_hidden.insert(0, "ID", np.concatenate((train_tab.index, test_tab.index), axis=0), True)
-df_hidden.to_csv("../results/encoding_ratio="+str(encoding_ratio)+".csv", index=False)
+df_hidden.to_csv("results/encoding_ratio="+str(encoding_ratio)+".csv", index=False)

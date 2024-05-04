@@ -1,19 +1,21 @@
-import pandas as pd
-import numpy as np
 import torch
 import re
+import argparse
+import pandas as pd
+import numpy as np
 from torch.utils.data import DataLoader
 from AutoComplete.dataset import CopymaskDataset
-import argparse
 
 
 parser = argparse.ArgumentParser(description='Inference trained AutoComplete model')
 parser.add_argument('--impute_using_save', type=str, help='Path to saved model')
+parser.add_argument('--id_name', type=str, default='ID', help='Column in CSV file which is the identifier for the samples.')
+parser.add_argument('--device', type=str, default='cpu', help='Device available for torch (use cpu if no GPU available).')
 
 args = parser.parse_args()
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-id_name = "ID"
+device = args.device
+id_name = args.id_name
 train_tab = pd.read_csv("datasets/train.csv").set_index(id_name)
 test_tab = pd.read_csv("datasets/test.csv").set_index(id_name)
 feature_dim = train_tab.shape[-1]
@@ -21,10 +23,9 @@ feature_dim = train_tab.shape[-1]
 pattern = r"[-+]?\d*\.\d+|\d+"
 nums_str = re.findall(pattern, args.impute_using_saved)
 hyperparams = [float(num_str) for num_str in nums_str]
-encoding_ratio = hyperparams[3]
-copy_masking = hyperparams[2]
-depth = int(hyperparams[4])
 batch_size = int(hyperparams[1])
+encoding_ratio = hyperparams[3]
+depth = int(hyperparams[4])
 
 
 model = torch.load(args.impute_using_saved, map_location=torch.device(device))
@@ -34,7 +35,6 @@ ncats = train_tab.nunique()
 binary_features = train_tab.columns[ncats == 2]
 contin_features = train_tab.columns[~(ncats == 2)]
 feature_ord = list(contin_features) + list(binary_features)
-CONT_BINARY_SPLIT = len(contin_features)
 
 train_dset = train_tab[feature_ord]
 train_stats = dict(mean=train_dset.mean().values)
@@ -66,4 +66,4 @@ for bi, batch in enumerate(dset):
 hmat = np.concatenate(hidden_ls)
 df_hidden = pd.DataFrame(data=hmat)
 df_hidden.insert(0, "ID", np.concatenate((train_tab.index, test_tab.index), axis=0), True)
-df_hidden.to_csv("checkpoints/encoding_ratio="+str(encoding_ratio)+".csv", index=False)
+df_hidden.to_csv("results/encoding_ratio="+str(encoding_ratio)+".csv", index=False)

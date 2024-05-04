@@ -1,11 +1,12 @@
 # don't commit the files in the datasets folder
 datasets/*
 checkpoints/*
+results/*
 
 # exception to the rule
 !datasets/.gitkeep 
 !checkpoints/.gitkeep
-
+!results/.gitkeep
 
 **/.DS_Store
 

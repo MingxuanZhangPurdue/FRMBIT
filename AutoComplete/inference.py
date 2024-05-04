@@ -4,7 +4,7 @@ import argparse
 import pandas as pd
 import numpy as np
 from torch.utils.data import DataLoader
-from AutoComplete.dataset import CopymaskDataset
+from dataset import CopymaskDataset
 
 
 parser = argparse.ArgumentParser(description='Inference trained AutoComplete model')
